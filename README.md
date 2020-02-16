@@ -2,7 +2,7 @@
 
 ## Install Tor
 ```bash
-# pacman -S tor
+pacman -S tor
 ```
 ## Add configuration
 
