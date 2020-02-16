@@ -21,10 +21,37 @@ HardwareAccel 1                                   ## Using OpenSSL Hardware Supp
 NumCPUs 2                                         ## Running in two threads
 ```
 
-## Start Tor
+## Start Tor as root
 
 ```bash
-# tor
+# Execute as root
+tor
 ```
 
 SOCKS5 available on 127.0.0.1:9050
+
+## Start Tor as  [chroot](https://en.wikipedia.org/wiki/Chroot) (recommended)
+
+
+```bash
+# Let's give execution privileges for torchroot-setup.sh
+chmod u+x torchroot-setup.sh
+
+# Execute the script torchroot-setup.sh
+./torchroot-setup.sh
+```
+
+Need to fix the configuration /opt/torchroot/etc/tor/torrc
+
+**DisableAllSwap  0**
+
+And finally, we start
+
+```bash
+chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor
+```
+
+## Conclusion
+
+This configuration only works as a proxy through the tor network. If you want to run the full tor node, you need to expand ExitPolicy, as well as other parameters. 
+[Documentation](https://2019.www.torproject.org/docs/documentation.html)
