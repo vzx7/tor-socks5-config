@@ -51,6 +51,24 @@ And finally, we start
 chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor
 ```
 
+## Start as daemon
+
+Add parameter to configuration /opt/torchroot/etc/tor/torrc
+
+**RunAsDaemon 1**
+
+and start tor in the background
+
+```bash
+chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor
+```
+To stop the service, do
+
+```bash
+ps aux | grep tor
+kill [PID tor]
+```
+
 ## Conclusion
 
 This configuration only works as a proxy through the tor network. If you want to run the full tor node, you need to expand ExitPolicy, as well as other parameters. 
